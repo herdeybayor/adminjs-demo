@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AdminModule } from '@adminjs/nestjs';
 import { ConfigModule } from '@nestjs/config';
+import * as AdminJSMongoose from '@adminjs/mongoose';
+import AdminJS from 'adminjs';
 
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import provider from './admin/auth-provider.js';
 import options from './admin/options.js';
+
+AdminJS.registerAdapter({
+  Resource: AdminJSMongoose.Resource,
+  Database: AdminJSMongoose.Database,
+});
 
 @Module({
   imports: [
